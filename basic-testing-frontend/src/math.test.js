@@ -85,10 +85,24 @@ it('should yield the provided value if only one value is provided and the others
 });
 
 it('should throw an error if no value is passed into the function',() => {
-    // Act
-    const result = add();
+    
+    const resultFn = () => {
+        add();
+    };
+
+    expect(resultFn).toThrow(/is not iterable/);  
+});
+
+it('should throw an error if provided with multiple arguments instead of an array', () => {
+    // Arrange
+    const num1 = 1;
+    const num2 = 2;
+
+    const resultFn = () => {
+        add(num1, num2);
+    }
 
     // Assert
-    expect(result).toThrowError('Numbers not provided.');
+    expect(resultFn).toThrow(/is not iterable/);
 });
 
